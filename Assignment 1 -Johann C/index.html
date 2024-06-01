@@ -98,18 +98,18 @@
 
 		// Johann Chua - A01174894
 
+		// creating a variable for the button to later attach the event listener to the function
 		const calcBtn = document.querySelector("#calculate")
 
+		// creating global variables for total amount, discount, and tax to kee p
 		let totalAmount = 0;
 		let discount = 0.10;
 		let tax = 0.12;
 
-
 		function runCalc() {
 
-			// creating a variable
 			let subtotal = 0;
-			// saving the item 1's quantity and price  input value to a new variable to be able to add both quantity and price together in a new line of instructions after the retrieval of information
+			// saving the item 1's quantity and price  input value to a new variable to be able to multiply both quantity and price together in a new line of instructions after the retrieval of information
 			const item1_quantity = document.querySelector("#line-1-quantity").value;
 			const item1_price = document.querySelector("#line-1-price").value;
 			// instructions for calculating item1 quantity and item1 price and setting the total into a new variable to be able to calculate the final total of all the total variables of each line. (if that makes sense LOL)
@@ -118,30 +118,46 @@
 			// .toFixed(2) attached to the total to make values show only to 2 decimal places
 			document.querySelector("#line-1").innerText = "$" + item1_total.toFixed(2);
 
+			// creating variables for item 2's quantity and price to be able to reference to them later in a new line 
 			const item2_quantity = document.querySelector("#line-2-quantity").value;
 			const item2_price = document.querySelector("#line-2-price").value;
+			// instructions for calculating item2 total from line 123 and 124
 			const item2_total = item2_quantity * item2_price;
+			// retrieving the blank info from line 2 total to display the new calculated data from the above line and adding the string of "$" to display before the actual number that was calculated
 			document.querySelector("#line-2").innerText = "$"  + item2_total.toFixed(2);
 
+			// creating variables for item 3 Q and P
 			const item3_quantity = document.querySelector("#line-3-quantity").value;
 			const item3_price = document.querySelector("#line-3-price").value;
+			// variable for item 3 total which comes from multiplying item3 QxP
 			const item3_total = item3_quantity * item3_price;
+			// attaching item 3 total into the blank info of item3 total from the HTML
 			document.querySelector("#line-3").innerText = "$" + item3_total.toFixed(2);
 
+			// creating variable for Item 4 Q and P 
 			const item4_quantity = document.querySelector("#line-4-quantity").value;
 			const item4_price = document.querySelector("#line-4-price").value;
+			// creating a variable for item 4 total which comes from item4 QxP
 			const item4_total = item4_price * item4_quantity;
+			// attaching item4 calculation from above line into the blank info from the HTML
 			document.querySelector("#line-4").innerText = "$" + item4_total.toFixed(2);
 
+			// creating variable for item5 Q and P 
 			const item5_quantity = document.querySelector("#line-5-quantity").value;
 			const item5_price = document.querySelector("#line-5-price").value;
+			// creating variable and calculation for item5total from above line
 			const item5_total = item5_price * item5_quantity;
+			// displaying the calculation from above line to the blank item5 total info from html
 			document.querySelector("#line-5").innerText = "$" + item5_total.toFixed(2);
 
+			// calculating the subtotal from all 5 items' total and displaying the subtotal to the blank info of line 77
 			const sub_total = item1_total + item2_total + item3_total + item4_total + item5_total;
 			document.querySelector("#sub-total").innerText = "$" + sub_total.toFixed(2);
 
 			// Discount
+			// 10% discount applied to all values of subtotal that is above 250 
+			// if more than or equal to  250, multiply by the global variable of discount set at 0.1 and display the calculated number to #discount 
+			// else meaning discount amount = 0 and then display 0 (flipped it but same idea)
 			if(sub_total >= 250) {
 				discount_amount = sub_total * discount;
 				document.querySelector("#discount").innerText = "$" + discount_amount.toFixed(2);
@@ -155,6 +171,7 @@
 			totalAmount = sub_total - discount_amount;
 
 			// tax
+			// Multiply total amount with global variable of tax which is 0.12, display to #tax
 			
 			tax_amount = totalAmount * tax;
 			document.querySelector("#tax").innerText = "$" + tax_amount.toFixed(2);
@@ -163,7 +180,7 @@
 			totalAmount = sub_total - discount_amount + tax_amount;
 			document.querySelector("#Total").innerText =  "$" + totalAmount.toFixed(2);
 		}
-
+		// Event Listener to see when user clicks on the button (variable of calcBtn comes from the first global variable in the code)
 		calcBtn.addEventListener("click", runCalc);
 
 
